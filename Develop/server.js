@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+
+app.listen(PORT, ()=> console.log(`app is running at http://localhost:${PORT}`))
