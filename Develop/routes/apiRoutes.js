@@ -1,15 +1,31 @@
 const router = require("express").Router();
 const fs = require("fs");
-const uuid = require("uuid");
+const uuid = require("../helpers/uuid");
 
 //get notes from DB
 router.get('/', (req,res)=> {
-    res.json(`Got ${req.method} Request`);
+    const notesData = fs.readFile('./db/db.json', 'utf8');
+    res.json(JSON.parse(notesData));
 })
 
 //add notes to DB
 router.post('/', (req,res)=> {
-    res.json(`Got ${req.method} Request`);
+    fs.readFile('./db/db.json', 'utf8')
+    const currentNotes = []
+    const newNote = {
+        tltle: req.body.title,
+        text: req.body.text,
+        id: uuid(),
+    };
+    fs.readFile('./db/db.json', 'utf8');
+    res.json(JSON.parse(currentNotes));
+    currentNotes.push(newNote);
+    
+
+
+    fs.writeFile('./db/db.json', JSON.stringify(newNote), 'utf8');
+
+    console.log(`Got ${req.method} Request`);
 });
 
 //Bonus - Be able to delete a note
