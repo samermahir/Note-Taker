@@ -4,25 +4,36 @@ const uuid = require("../helpers/uuid.js");
 
 //get notes from DB
 router.get('/', (req,res)=> {
+    console.log(`Received ${req.method} request`);
     const notesData = fs.readFileSync('./db/db.json', 'utf8');
     res.json(JSON.parse(notesData));
 })
 
 //add notes to DB
-router.post('/', (req,res)=> {
-    fs.readFile('./db/db.json', 'utf8')
-    const currentNotes = []
+router.post('/api/notes', (req,res)=> {
+    const {title, text} = req.body;
+    if (title && text) {
+    }
     const newNote = {
-        tltle: req.body.title,
-        text: req.body.text,
+        title,
+        text,
         id: uuid(),
+        
     };
-    fs.readFileSync('./db/db.json', 'utf8');
-    res.json(JSON.parse(currentNotes));
-    currentNotes.push(newNote);
-    fs.writeFile('./db/db.json', JSON.stringify(newNote), 'utf8');
+    const savedData = fs.readFileSync('./db/db.json', 'utf8' (err)); {
+        if (err) {
+        console.log(err);
+        }else{
+    const noteTaker = JSON.parse(savedData);
+    noteTaker.push(newNote);
+    fs.writeFile('./db/db.json', JSON.stringify(noteTaker),
+    );
 
     console.log(`Got ${req.method} Request`);
+
+        }
+    }
+    
 });
 
 //Bonus - Be able to delete a note
