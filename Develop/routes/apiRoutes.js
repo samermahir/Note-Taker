@@ -11,6 +11,7 @@ router.get('/', (req,res)=> {
 
 //add notes to DB
 router.post('/api/notes', (req,res)=> {
+    console.log(`Got ${req.method} Request`);
     const {title, text} = req.body;
     if (title && text) {
     }
@@ -20,7 +21,7 @@ router.post('/api/notes', (req,res)=> {
         id: uuid(),
         
     };
-    const savedData = fs.readFileSync('./db/db.json', 'utf8' (err)); {
+    const savedData = fs.readFileSync('./db/db.json', 'utf8' (err,)); {
         if (err) {
         console.log(err);
         }else{
@@ -28,11 +29,11 @@ router.post('/api/notes', (req,res)=> {
     noteTaker.push(newNote);
     fs.writeFile('./db/db.json', JSON.stringify(noteTaker),
     );
-
-    console.log(`Got ${req.method} Request`);
-
+    res.json();
         }
     }
+    
+
     
 });
 

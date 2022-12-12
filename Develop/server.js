@@ -22,7 +22,7 @@ app.get('/api/notes', (req,res)=> {
 })
 
 //Get route for homepage
-app.get('*', (req,res)=> {
+app.get('/', (req,res)=> {
     res.sendFile(path.join(__dirname, './public/index.html'));
 })
 
