@@ -17,12 +17,12 @@ app.get('/notes', (req,res)=> {
 })
 
 //Get route for json
-app.get('/api/notes', (req,res)=> {
+app.get('/notes', (req,res)=> {
     res.sendFile(path.join(__dirname, './db/db.json'));
 })
 
 //Get route for homepage
-app.get('/', (req,res)=> {
+app.get('*', (req,res)=> {
     res.sendFile(path.join(__dirname, './public/index.html'));
 })
 

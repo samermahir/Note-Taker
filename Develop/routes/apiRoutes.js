@@ -10,7 +10,7 @@ router.get('/', (req,res)=> {
 })
 
 //add notes to DB
-router.post('/api/notes', (req,res)=> {
+router.post('/', (req,res)=> {
     console.log(`Got ${req.method} Request`);
     const {title, text} = req.body;
     if (title && text) {
@@ -21,17 +21,16 @@ router.post('/api/notes', (req,res)=> {
         id: uuid(),
         
     };
-    const savedData = fs.readFileSync('./db/db.json', 'utf8' (err,)); {
-        if (err) {
-        console.log(err);
-        }else{
+    const savedData = fs.readFileSync('./db/db.json')
+        
     const noteTaker = JSON.parse(savedData);
     noteTaker.push(newNote);
-    fs.writeFile('./db/db.json', JSON.stringify(noteTaker),
-    );
-    res.json();
-        }
-    }
+    fs.writeFile('./db/db.json', JSON.stringify(noteTaker), 'utf-8', (err)=> {
+        if (err) throw err;
+        console.log(`Saved ${noteTaker.length} notes`);
+    res.json(savedData);
+        });
+    
     
 
     
@@ -39,5 +38,5 @@ router.post('/api/notes', (req,res)=> {
 
 //Bonus - Be able to delete a note
 
-module.exports = router;
+module.exports = router
 
