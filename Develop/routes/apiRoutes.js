@@ -31,12 +31,26 @@ router.post('/', (req,res)=> {
     res.json(savedData);
         });
     
-    
+ //Bonus - Be able to delete a note   
+router.delete('/notes/:id', (req, res)=> {
+    console.log(`Received ${req.method} request`);
+    const savedData = fs.readFileSync('./db/db.json', 'utf-8')
+    const deleteNote = req.params.id;
+    const oldNote = JSON.parse(savedData)
+    const newNote = oldNote.filter(note => note.id!== deleteNote);
+    fs.writeFile('./db/db.json', JSON.stringify(newNote), 'utf-8', (err)=> {
+        if (err) throw err;
+        console.log('Note deleted')
 
+    res.json();
+    })
+    
     
 });
 
-//Bonus - Be able to delete a note
+})
+
+
 
 module.exports = router
 
