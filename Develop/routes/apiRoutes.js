@@ -13,12 +13,11 @@ router.get('/', (req,res)=> {
 router.post('/', (req,res)=> {
     console.log(`Got ${req.method} Request`);
     const {title, text} = req.body;
-    if (title && text) {
-    }
+    const id = uuid();
     const newNote = {
         title,
         text,
-        id: uuid(),
+        id,
         
     };
     const savedData = fs.readFileSync('./db/db.json')
@@ -33,12 +32,15 @@ router.post('/', (req,res)=> {
     
  //Bonus - Be able to delete a note   
 router.delete('/notes/:id', (req, res)=> {
-    console.log(`Received ${req.method} request`);
-    const savedData = fs.readFileSync('./db/db.json', 'utf-8')
-    const deleteNote = req.params.id;
-    const oldNote = JSON.parse(savedData)
-    const newNote = oldNote.filter(note => note.id!== deleteNote);
-    fs.writeFile('./db/db.json', JSON.stringify(newNote), 'utf-8', (err)=> {
+    console.log(`deleted ${req.method} request`);
+    const deleteNote = fs.readFileSync('./db/db.json')
+    const oldData = JSON.parse(deleteNote)
+    newNote = oldData.filter(function(note) {
+        return note.id !== req.params.id;
+    });
+
+    const brandNewNote = JSON.stringify(newNote)
+    fs.writeFile('./db/db.json', brandNewNote , 'utf-8', (err)=> {
         if (err) throw err;
         console.log('Note deleted')
 
