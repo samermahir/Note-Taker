@@ -26,14 +26,14 @@ router.post('/', (req,res)=> {
     noteTaker.push(newNote);
     fs.writeFile('./db/db.json', JSON.stringify(noteTaker), 'utf-8', (err)=> {
         if (err) throw err;
-        console.log(`Saved ${noteTaker.length} notes`);
-    res.json(savedData);
+        },
+    res.json(savedData));
         });
     
  //Bonus - Be able to delete a note   
-router.delete('/notes/:id', (req, res)=> {
-    console.log(`deleted ${req.method} request`);
-    const deleteNote = fs.readFileSync('./db/db.json')
+router.delete('/:id', (req, res)=> {
+    console.info(`deleted ${req.method} request`);
+    const deleteNote = fs.readFileSync('./db/db.json', )
     const oldData = JSON.parse(deleteNote)
     newNote = oldData.filter(function(note) {
         return note.id !== req.params.id;
@@ -50,7 +50,7 @@ router.delete('/notes/:id', (req, res)=> {
     
 });
 
-})
+
 
 
 
