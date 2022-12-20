@@ -20,7 +20,7 @@ router.post('/', (req,res)=> {
         id,
         
     };
-    const savedData = fs.readFileSync('./db/db.json')
+    const savedData = fs.readFileSync('./db/db.json', 'utf-8')
         
     const noteTaker = JSON.parse(savedData);
     noteTaker.push(newNote);
