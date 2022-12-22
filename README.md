@@ -9,3 +9,9 @@ A note taking application that is quick and easy to use. It provides the user wi
 
 In order to install you will need to do an npm i for all the dependencies. Once that is done on your CLI you will need to type node server.js.
 
+
+## Demo
+
+
+## Deployment
+
