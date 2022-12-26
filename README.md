@@ -20,3 +20,6 @@ https://user-images.githubusercontent.com/113157987/209242663-1053d2e1-4fdd-4591
 
 ## Deployment
 
+Note-Taker app is deployed on Heroku.
+
+https://samer-note-taker.herokuapp.com/
